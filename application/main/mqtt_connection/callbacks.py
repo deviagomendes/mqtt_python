@@ -1,3 +1,4 @@
+from datetime import datetime
 from application.configs.broker_configs import mqtt_broker_configs
 
 def on_connect(client, userdata, flags, rc):
@@ -12,5 +13,8 @@ def on_subscribe(client, userdata, mid, granted_qos):
     print(f'QoS: {granted_qos}')
 
 def on_message(client, userdata, message):
+    data_atual = datetime.now()
+    data = data_atual.strftime("%d/%m/%Y %H:%M")
     print('Mensagem recebida!')
     print(message.payload.decode())
+    print(data)
