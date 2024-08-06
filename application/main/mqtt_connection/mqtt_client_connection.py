@@ -10,15 +10,14 @@ class MqttClientConnection:
         self.__mqtt_client = None
 
     def start_connection(self):
-        mqtt_client = mqtt.Client(self.__client_name)
+        self.__mqtt_client = mqtt.Client(self.__client_name)
 
-        # callbacks
-        mqtt_client.on_connect = on_connect
-        mqtt_client.on_subscribe = on_subscribe
-        mqtt_client.on_message = on_message
+        # Set callbacks
+        self.__mqtt_client.on_connect = on_connect
+        self.__mqtt_client.on_subscribe = on_subscribe
+        self.__mqtt_client.on_message = on_message
 
-        mqtt_client.connect(host=self.__broker_ip, port=self.__port, keepalive=self.__keepalive)
-        self.__mqtt_client = mqtt_client
+        self.__mqtt_client.connect(host=self.__broker_ip, port=self.__port, keepalive=self.__keepalive)
         self.__mqtt_client.loop_start()
 
     def end_connection(self):

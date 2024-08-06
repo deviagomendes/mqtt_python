@@ -7,8 +7,9 @@ def start():
         mqtt_broker_configs["HOST"],
         mqtt_broker_configs["PORT"],
         mqtt_broker_configs["CLIENT_NAME"],
-        mqtt_broker_configs["KEPPALIVE"]
+        mqtt_broker_configs["KEEPALIVE"]
     )
     mqtt_client_connection.start_connection()
 
-    while True: time.sleep(0.001)
+    while True:
+        time.sleep(0.001)
